@@ -12,17 +12,17 @@ Ext.define('Ext.OpenLayers.Basic', {
   config: {
     map: null,
     layers: null,
-    projection: 'EPSG:3338'
+    projection: 'EPSG:3338',
+    defaultZoom: 2,
+    defaultCenter: new OpenLayers.LonLat(-147.849, 64.856)
   },
   mapConfig: {},
 
   projections: {
-		/**
-		 * Alaska centric polar projection
-		 */
-    'EPSG:3572': {
-      defaultCenter: new OpenLayers.LonLat(-147.849, 64.856),
-      defaultZoom: 3,
+  /*
+  * Alaska centric polar projection
+  */
+  'EPSG:3572': {
       defaultLayers: ['bdl_3572'],
       maxExtent: new OpenLayers.Bounds(-6010000, -6010000, 6010000, 6010000),
       numZoomLevels: 18,
@@ -31,12 +31,10 @@ Ext.define('Ext.OpenLayers.Basic', {
       projection: "EPSG:3572",
       displayProjection: new OpenLayers.Projection("EPSG:4326")
     },
-		/**
-		 * Alaskan Albers Equal Area
-		 */
+    /*
+    * Alaskan Albers Equal Area
+    */
     'EPSG:3338': {
-      defaultCenter: new OpenLayers.LonLat(-147.849, 64.856),
-      defaultZoom: 2,
       defaultLayers: ['bdl_3338', 'osm_base_3338', 'osm_google_overlay_3338'],
       maxExtent: new OpenLayers.Bounds(-3500000, -3500000, 3500000, 3500000),
       restrictedExtent: new OpenLayers.Bounds(-3500000, 0, 3500000, 3000000),
@@ -50,8 +48,6 @@ Ext.define('Ext.OpenLayers.Basic', {
 			TODO find the espg code for the google projections
 		*/
     'google': {
-      defaultCenter: new OpenLayers.LonLat(-147.849, 64.856),
-      defaultZoom: 3,
       numZoomLevels: 18,
       defaultLayers: ['bdl', 'charts', 'topo', 'shaded_relief', 'landsat_pan'],
       projection: "EPSG:900913",
@@ -63,7 +59,7 @@ Ext.define('Ext.OpenLayers.Basic', {
   },
 
   constructor: function(config) {
-//    this.initConfig(config);
+    this.initConfig(config);
     this.callParent(arguments);
   },
 
@@ -71,7 +67,7 @@ Ext.define('Ext.OpenLayers.Basic', {
     this.addEvents('ready');
 
     Ext.apply(this.mapConfig, this.projections[this.projection]);
-    if(this.layers != null) {
+    if(this.layers !== null) {
       this.mapConfig.defaultLayers = this.layers;
     }
 
@@ -84,9 +80,9 @@ Ext.define('Ext.OpenLayers.Basic', {
     this.map = new OpenLayers.Map(this.body.dom, this.mapConfig);
     this.initLayers();
 
-    var center = this.mapConfig.defaultCenter.clone();
+    var center = this.getDefaultCenter().clone();
     center.transform(this.map.displayProjection, this.map.getProjectionObject());
-    this.map.setCenter(center, this.mapConfig.defaultZoom);
+    this.map.setCenter(center, this.getDefaultZoom());
     
     this.map.addControl(new OpenLayers.Control.Attribution());
 
@@ -99,10 +95,9 @@ Ext.define('Ext.OpenLayers.Basic', {
     this._layers = Ext.create('Ext.OpenLayers.Layers');
     this._layers.init(this.getMap());
 
-    this.mapConfig
     Ext.each(this.mapConfig.defaultLayers, function(name) {
       this.getMap().addLayer(this._layers.getLayer(name));
-    }, this)
+    }, this);
   },
 
   resizeMap: function() {
@@ -124,4 +119,4 @@ Ext.define('Ext.OpenLayers.Basic', {
     this.getMap().zoomTo(Math.min(zoom, minZoom));
     this.panToBounds(bounds);
   },
-})
+});
