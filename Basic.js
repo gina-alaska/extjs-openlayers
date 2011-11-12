@@ -37,7 +37,7 @@ Ext.define('Ext.OpenLayers.Basic', {
     'EPSG:3338': {
       defaultLayers: ['bdl_3338', 'osm_base_3338', 'osm_google_overlay_3338'],
       maxExtent: new OpenLayers.Bounds(-3500000, -3500000, 3500000, 3500000),
-      restrictedExtent: new OpenLayers.Bounds(-3500000, 0, 3500000, 3000000),
+      //restrictedExtent: new OpenLayers.Bounds(-3500000, 0, 3500000, 3000000),
       // numZoomLevels: 18,
       maxResolution: (3500000 * 2.0 / 256.0),
       units: 'm',
@@ -65,14 +65,16 @@ Ext.define('Ext.OpenLayers.Basic', {
 
   initComponent: function() {
     this.addEvents('ready');
-
+    
     Ext.apply(this.mapConfig, this.projections[this.projection]);
+
     if(this.layers !== null) {
       this.mapConfig.defaultLayers = this.layers;
     }
 
     this.callParent(arguments);
-
+    
+    this.on('beforedestroy', this.cleanup, this);
     this.on('afterrender', this.initMap, this, { defer: 100, single: true });
   },
 
@@ -119,4 +121,8 @@ Ext.define('Ext.OpenLayers.Basic', {
     this.getMap().zoomTo(Math.min(zoom, minZoom));
     this.panToBounds(bounds);
   },
+
+  cleanup: function() {
+    delete this.map;
+  }
 });
