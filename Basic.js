@@ -66,7 +66,7 @@ Ext.define('Ext.OpenLayers.Basic', {
   initComponent: function() {
     this.addEvents('ready');
     
-    Ext.apply(this.mapConfig, this.projections[this.projection]);
+    Ext.applyIf(this.mapConfig, this.projections[this.projection]);
 
     if(this.layers !== null) {
       this.mapConfig.defaultLayers = this.layers;
