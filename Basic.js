@@ -25,7 +25,7 @@ Ext.define('Ext.OpenLayers.Basic', {
   'EPSG:3572': {
       defaultLayers: ['bdl_3572'],
       maxExtent: new OpenLayers.Bounds(-6010000, -6010000, 6010000, 6010000),
-      numZoomLevels: 18,
+      minZoomLevel: 2,
       maxResolution: (6010000 * 2.0 / 256.0),
       units: 'm',
       projection: "EPSG:3572",
@@ -40,6 +40,7 @@ Ext.define('Ext.OpenLayers.Basic', {
       //restrictedExtent: new OpenLayers.Bounds(-3500000, 0, 3500000, 3000000),
       // numZoomLevels: 18,
       maxResolution: (3500000 * 2.0 / 256.0),
+      minZoomLevel: 2,
       units: 'm',
       projection: "EPSG:3338",
       displayProjection: new OpenLayers.Projection("EPSG:4326")
@@ -48,7 +49,6 @@ Ext.define('Ext.OpenLayers.Basic', {
 			TODO find the espg code for the google projections
 		*/
     'google': {
-      numZoomLevels: 18,
       defaultLayers: ['bdl', 'charts', 'topo', 'shaded_relief', 'landsat_pan'],
       projection: "EPSG:900913",
       units: 'm',
