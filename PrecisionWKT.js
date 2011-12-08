@@ -14,5 +14,5 @@ OpenLayers.Format.PrecisionWKT = OpenLayers.Class(OpenLayers.Format.WKT, {
     OpenLayers.Format.WKT.prototype.initialize.apply(this, [options]);
   },
 
-  precision: 14, 
+  precision: 14
 });
