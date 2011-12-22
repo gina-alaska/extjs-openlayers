@@ -68,9 +68,17 @@ Ext.define('Ext.OpenLayers.Basic', {
     
     Ext.applyIf(this.mapConfig, this.projections[this.projection]);
 
-    if(this.layers !== null) {
+    if(this.layers) { 
       this.mapConfig.defaultLayers = this.layers;
     }
+    
+    this.layers = new Ext.util.MixedCollection(true);
+    this.layers.on('add', function(index, obj, key, opts) {
+      this.getMap().addLayer(obj);
+    }, this);
+    this.layers.on('remove', function(obj, key) {
+      this.getMap().removeLayer(obj);
+    }, this);
 
     this.callParent(arguments);
     
@@ -80,6 +88,7 @@ Ext.define('Ext.OpenLayers.Basic', {
 
   initMap: function() {
     this.map = new OpenLayers.Map(this.body.dom, this.mapConfig);
+
     this.initLayers();
 
     var center = this.getDefaultCenter().clone();
@@ -94,11 +103,11 @@ Ext.define('Ext.OpenLayers.Basic', {
   },
 
   initLayers: function() {
-    this._layers = Ext.create('Ext.OpenLayers.Layers');
-    this._layers.init(this.getMap());
+    this.gina_layers = Ext.create('Ext.OpenLayers.Layers');
+    this.gina_layers.init(this.getMap());
 
     Ext.each(this.mapConfig.defaultLayers, function(name) {
-      this.getMap().addLayer(this._layers.getLayer(name));
+      this.layers.add(name, this.gina_layers.getLayer(name));
     }, this);
   },
 
