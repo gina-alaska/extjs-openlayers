@@ -165,10 +165,10 @@ Ext.define('Ext.OpenLayers.Layers', {
         visibility: false
       }
     },
-    bathy_3338: {
-      name: 'Bathymetry',
+    shaded_relief_3338: {
+      name: 'Shaded Relief',
       type: 'tiles',
-      baseUrl: 'http://tiles.proto.gina.alaska.edu/tiles/gina_bathymetry_aa/tile/',
+      baseUrl: 'http://tiles.proto.gina.alaska.edu/tiles/aea_gina_bathymetry_aa/tile/',
       options: {
         isBaseLayer: true,
         visibility: false
