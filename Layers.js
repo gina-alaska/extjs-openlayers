@@ -167,7 +167,7 @@ Ext.define('Ext.OpenLayers.Layers', {
     },
     
     aea_shaded_relief_3338: {
-      name: 'AEA Shaded Relief',
+      name: 'Shaded Relief',
       type: 'tiles',
       baseUrl: 'http://tiles.proto.gina.alaska.edu/tilesrv/aea_ak_shaded_relief_aa/tile/',
       options: {
@@ -176,8 +176,8 @@ Ext.define('Ext.OpenLayers.Layers', {
       }
     },
     
-    shaded_relief_3338: {
-      name: 'Shaded Relief',
+    bathy_3338: {
+      name: 'Shaded Relief + Bathymetry',
       type: 'tiles',
       baseUrl: 'http://tiles.proto.gina.alaska.edu/tiles/aea_gina_bathymetry_aa/tile/',
       options: {
