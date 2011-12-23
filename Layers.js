@@ -165,6 +165,17 @@ Ext.define('Ext.OpenLayers.Layers', {
         visibility: false
       }
     },
+    
+    aea_shaded_relief_3338: {
+      name: 'AEA Shaded Relief',
+      type: 'tiles',
+      baseUrl: 'http://tiles.proto.gina.alaska.edu/tilesrv/aea_ak_shaded_relief_aa/tile/',
+      options: {
+        isBaseLayer: true,
+        visibility: false
+      }
+    },
+    
     shaded_relief_3338: {
       name: 'Shaded Relief',
       type: 'tiles',
