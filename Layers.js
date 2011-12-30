@@ -23,10 +23,12 @@ Ext.define('Ext.OpenLayers.Layers', {
     charts: {
       name: 'NOAA Charts',
       type: 'tiles',
-      baseUrl: 'http://swmha.gina.alaska.edu/tilesrv/charts/tile/',
+      wmsName: 'NOAA_Charts',
       options: {
         wrapDateLine: true,
-        isBaseLayer: true
+        isBaseLayer: true,
+        wmsUrl: 'http://wms.alaskamapped.org/charts',
+        baseUrl: 'http://swmha.gina.alaska.edu/tilesrv/charts/tile/'
       }
     },
     topo: {
@@ -50,10 +52,13 @@ Ext.define('Ext.OpenLayers.Layers', {
     shaded_relief: {
       name: 'Shaded Relief',
       type: 'tiles',
+
       baseUrl: 'http://swmha.gina.alaska.edu/tilesrv/shaded_relief_ned/tile/',
       options: {
         wrapDateLine: true,
-        isBaseLayer: true
+        isBaseLayer: true,
+        wmsName: 'shaded_relief_ned',
+        wmsUrl: 'http://wms.alaskamapped.org/extras'
       }
     },
     landsat_pan: {
@@ -62,7 +67,9 @@ Ext.define('Ext.OpenLayers.Layers', {
       baseUrl: 'http://swmha.gina.alaska.edu/tilesrv/landsat_pan/tile/',
       options: {
         wrapDateLine: true,
-        isBaseLayer: true
+        isBaseLayer: true,
+        wmsName: 'bdl_landsat_pan_full',
+        wmsUrl: 'http://wms.alaskamapped.org/extras'
       }
     },
     bdl_3338: {
@@ -72,8 +79,10 @@ Ext.define('Ext.OpenLayers.Layers', {
       // numZoomLevels: 16,
       options: {
         wrapDateLine: false,
-        isBaseLayer: true
-      }
+        isBaseLayer: true,
+        wmsName: "BestDataAvailableLayer",
+        wmsUrl: "http://wms.alaskamapped.org/bdl"
+      },
     },
     bdl_3572: {
       name: 'Best Data Layer (EPSG:3572)',
