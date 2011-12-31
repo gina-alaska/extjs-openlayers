@@ -46,7 +46,9 @@ Ext.define('Ext.OpenLayers.Layers', {
       baseUrl: 'http://tiles.proto.gina.alaska.edu/tilesrv/drg_shaded_aa/tile/',
       options: {
         wrapDateLine: true,
-        isBaseLayer: true
+        isBaseLayer: true,
+        wmsName: 'DRG',
+        wmsUrl: 'http://wms.alaskamapped.org/extras'
       }
     },
     shaded_relief: {
