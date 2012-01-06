@@ -47,8 +47,8 @@ Ext.define('Ext.OpenLayers.Layers', {
       options: {
         wrapDateLine: true,
         isBaseLayer: true,
-        wmsName: 'DRG',
-        wmsUrl: 'http://wms.alaskamapped.org/extras'
+        wmsName: 'Hill Shaded DRG',
+        wmsUrl: 'http://no.gina.alaska.edu/extras'
       }
     },
     shaded_relief: {
@@ -114,7 +114,9 @@ Ext.define('Ext.OpenLayers.Layers', {
       options: {
         wrapDateLine: false,
         isBaseLayer: true,
-        attribution: '(c) <a href="http://www.openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+        attribution: '(c) <a href="http://www.openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+        wmsUrl: 'http://osm.proto.gina.alaska.edu/google',
+        wmsName: 'default'
       }
     },
     osm_google_overlay_3338: {
@@ -125,7 +127,10 @@ Ext.define('Ext.OpenLayers.Layers', {
         wrapDateLine: false,
         isBaseLayer: false,
         opacity: 0.75,
-        attribution: '(c) <a href="http://www.openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+        attribution: '(c) <a href="http://www.openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+        wmsUrl: 'http://osm.proto.gina.alaska.edu/google',
+        wmsName: 'places0,places1,places2,places3,places4,places5,places6,places7,places8,places9,places10,places11,places12,places13,places14,places15,places16,places17,places18,roads5,roads6,roads7,roads8_01,roads8_02,roads8_01,roads8_02,roads9_01,roads9_02,roads10_01,roads10_02,roads11_01,roads11_02,roads12_01,roads12_02,roads13_01,roads13_02,roads14_01,roads14_02,roads15_01,roads15_02,roads16_01,roads16_02,roads17_01,roads17_02,roads18_01,roads18_02'
+
       }
     },
     osm_overlay_3338: {
