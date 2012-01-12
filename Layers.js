@@ -147,34 +147,6 @@ Ext.define('Ext.OpenLayers.Layers', {
        visibility: false
      }
     },
-    aea_wind_3338: {
-     name: 'Wind Power',
-     type: 'tiles',
-     baseUrl: 'http://tiles.proto.gina.alaska.edu/tilesrv/aea_wind_aa/tile/',
-     options: {
-       isBaseLayer: false,
-       visibility: false
-     }
-    },
-    aea_biomass_3338: {
-      name: 'Woody Biomass',
-      type: 'tiles',
-      baseUrl: 'http://tiles.proto.gina.alaska.edu/tiles/aea_forest_biomass_aa/tile/',
-      options: {
-        isBaseLayer: false,
-        visibility: false
-      }
-    },
-    
-    aea_shaded_relief_3338: {
-      name: 'Shaded Relief',
-      type: 'tiles',
-      baseUrl: 'http://tiles.proto.gina.alaska.edu/tilesrv/aea_ak_shaded_relief_aa/tile/',
-      options: {
-        isBaseLayer: true,
-        visibility: false
-      }
-    },
     
     bathy_3338: {
       name: 'Shaded Relief + Bathymetry',
