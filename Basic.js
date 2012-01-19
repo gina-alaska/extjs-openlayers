@@ -23,10 +23,11 @@ Ext.define('Ext.OpenLayers.Basic', {
   * Alaska centric polar projection
   */
   'EPSG:3572': {
-      defaultLayers: ['TILE.EPSG:3572.BDL', 'TILE.EPSG:3572.OSM', 'TILE.EPSG:3572.OSM_OVERLAY'],
+      defaultLayers: ['TILE.EPSG:3572.BDL', 'TILE.EPSG:3572.OSM_OVERLAY'],
       maxExtent: new OpenLayers.Bounds(-6010000, -6010000, 6010000, 6010000),
       minZoomLevel: 2,
-      maxResolution: (6010000 * 2.0 / 256.0),
+      maxExtent: new OpenLayers.Bounds(-12742200.0, -7295308.34278405, 7295308.34278405, 12742200.0),
+      maxResolution: (20037508.34278405 / 256.0),
       units: 'm',
       projection: "EPSG:3572",
       displayProjection: new OpenLayers.Projection("EPSG:4326")
@@ -65,11 +66,11 @@ Ext.define('Ext.OpenLayers.Basic', {
 
   initComponent: function() {
     this.addEvents('ready');
-    
-    Ext.applyIf(this.mapConfig, this.projections[this.projection]);
 
-    if(this.layers) { 
-      this.mapConfig.defaultLayers = this.layers;
+    Ext.applyIf(this.mapConfig, this.projections[this.getProjection()]);
+
+    if(this.getLayers()) {
+      this.mapConfig.defaultLayers = this.getLayers();
     }
     
     this.layers = new Ext.util.MixedCollection(true);
@@ -83,26 +84,27 @@ Ext.define('Ext.OpenLayers.Basic', {
     this.callParent(arguments);
     
     this.on('beforedestroy', this.cleanup, this);
-    this.on('afterrender', this.initMap, this, { defer: 100, single: true });
+    this.on('afterrender', this.setupMap, this, { defer: 100, single: true });
   },
 
-  initMap: function() {
-    this.map = new OpenLayers.Map(this.body.dom, this.mapConfig);
+  setupMap: function() {
+    var map = new OpenLayers.Map(this.body.dom, this.mapConfig);
+    this.setMap(map);
 
-    this.initLayers();
+    this.setupLayers();
 
     var center = this.getDefaultCenter().clone();
-    center.transform(this.map.displayProjection, this.map.getProjectionObject());
-    this.map.setCenter(center, this.getDefaultZoom());
-    
-    this.map.addControl(new OpenLayers.Control.Attribution());
+    center.transform(this.getMap().displayProjection, this.getMap().getProjectionObject());
+    map.setCenter(center, this.getDefaultZoom());
+
+    map.addControl(new OpenLayers.Control.Attribution());
 
     Ext.defer(this.resizeMap, 100, this);
     this.fireEvent('ready', this, { defer: 100 });
 		this.on('resize', this.resizeMap, this);
   },
 
-  initLayers: function() {
+  setupLayers: function() {
     Gina.Layers.inject(this.getMap(), this.mapConfig.defaultLayers);
   },
 
