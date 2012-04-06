@@ -108,7 +108,6 @@ Ext.define('Ext.OpenLayers.Basic', {
   },
 
   resizeMap: function() {
-    console.log('resize');
     var center = this.getMap().getCenter();
     this.getMap().updateSize();
     this.getMap().setCenter(center);
