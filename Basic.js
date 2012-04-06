@@ -98,7 +98,7 @@ Ext.define('Ext.OpenLayers.Basic', {
 
     map.addControl(new OpenLayers.Control.Attribution());
 
-    Ext.defer(this.resizeMap, 100, this);
+    // Ext.defer(this.resizeMap, 100, this);
     this.fireEvent('ready', this, { defer: 100 });
     // this.on('resize', this.resizeMap, this);
   },
@@ -108,6 +108,7 @@ Ext.define('Ext.OpenLayers.Basic', {
   },
 
   resizeMap: function() {
+    console.log('resize');
     var center = this.getMap().getCenter();
     this.getMap().updateSize();
     this.getMap().setCenter(center);
