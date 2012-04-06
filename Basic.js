@@ -24,7 +24,6 @@ Ext.define('Ext.OpenLayers.Basic', {
   */
   'EPSG:3572': {
       defaultLayers: ['TILE.EPSG:3572.BDL', 'TILE.EPSG:3572.OSM_OVERLAY'],
-      maxExtent: new OpenLayers.Bounds(-6010000, -6010000, 6010000, 6010000),
       minZoomLevel: 2,
       maxExtent: new OpenLayers.Bounds(-12742200.0, -7295308.34278405, 7295308.34278405, 12742200.0),
       maxResolution: (20037508.34278405 / 256.0),
@@ -101,7 +100,7 @@ Ext.define('Ext.OpenLayers.Basic', {
 
     Ext.defer(this.resizeMap, 100, this);
     this.fireEvent('ready', this, { defer: 100 });
-		this.on('resize', this.resizeMap, this);
+    // this.on('resize', this.resizeMap, this);
   },
 
   setupLayers: function() {
