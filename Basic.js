@@ -100,7 +100,7 @@ Ext.define('Ext.OpenLayers.Basic', {
 
     Ext.defer(this.resizeMap, 100, this);
     this.fireEvent('ready', this, { defer: 100 });
-    // this.on('resize', this.resizeMap, this);
+    this.on('resize', this.resizeMap, this);
   },
 
   setupLayers: function() {
