@@ -8,6 +8,7 @@
  **/
 Ext.define('Ext.OpenLayers.Basic', {
   extend: 'Ext.panel.Panel',
+  alias: 'widget.openlayers',
 
   config: {
     map: null,
